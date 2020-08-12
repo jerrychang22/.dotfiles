@@ -1,0 +1,50 @@
+#!/bin/sh
+# Pulls a new random wallpaper from sources and themes via wal
+
+# DEFAULTS
+# Sources = { Unsplash, ArtStation, Tabliss Collection, }
+NUM_SOURCES=2
+SOURCE=$(od -An -N1 -i /dev/random)
+SOURCE=$(echo "$SOURCE % $NUM_SOURCES" | bc) 
+SCHEME=$(od -An -N1 -i /dev/random)
+SCHEME=$(echo "$SCHEME % 2" | bc)
+PIC=~/Pictures/wallpapers/current/current.png
+
+# Clear cache
+wal -c
+
+# Parse args/flags
+for arg in "$@"
+do
+    case $arg in
+        -u|--unsplash)      SOURCE=0                ;;
+        -a|--artstation)    SOURCE=1                ;;
+      # -t|--tabliss)       SOURCE=2                ;; 
+      # -s=*|--source=*)    SOURCE=$RANDSOURCE      ;;
+        -l|--light)         SCHEME=0                ;;
+        -d|--dark)          SCHEME=1                ;;
+    esac
+    shift
+done
+
+# Append flags to wal command from inputs 
+COMMAND="wal -i $PIC --saturate 0.6"
+if [ $SOURCE -eq 0 ]; then randsplash;              fi
+if [ $SOURCE -eq 1 ]; then randart;                 fi
+# if [ $SOURCE -eq 2 ]; then randtabliss;             fi
+if [ $SCHEME -eq 0 ]; then COMMAND="$COMMAND -l";   fi
+if [ $SCHEME -eq 1 ]; then COMMAND="$COMMAND";      fi
+
+eval " $COMMAND"
+
+# Update colors for programs
+xrdb $HOME/.cache/wal/colors.Xresources
+spicetify update
+genzathurarc
+wal_steam_u -w
+pywalfox update
+i3-msg reload
+
+# Neofetch
+rm $HOME/.cache/thumbnails/neofetch/*
+neofetch --gtk3 off

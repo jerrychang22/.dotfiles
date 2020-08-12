@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#Based on wa.sh by Sairon Istyar , cloned by https://bitbucket.org/lbesson/bin/src/master/wa.sh 
+
+KEY="G332HA-KHRE9WX8AA"
+q=$(echo "$@" | sed 's/+/%2B/g' | tr '\ ' '\+')
+result=$(curl -s "http://api.wolframalpha.com/v2/query?input=${q}&appid=${KEY}&format=plaintext")
+result=`echo "${result}" \
+	| tr '\n' '\t' \
+	| sed -e 's/<plaintext>/\'$'\n<plaintext>/g' \
+	| grep -oE "<plaintext>.*</plaintext>|<pod title=.[^\']*" \
+	| sed -e 's!<plaintext>!!g; \
+		s!</plaintext>!!g; \
+		s!<pod title=.*!\\\x1b[1;36m&\\\x1b[0m!g; \
+		s!<pod title=.!!g; \
+		s!\&amp;!\&!g; \
+		s!\&lt;!<!g; \
+		s!\&gt;!>!g; \
+		s!\&quot;!"!g' \
+		-e "s/\&apos;/'/g" \
+	| tr '\t' '\n' \
+	| sed  '/^$/d; \
+		s/\ \ */\ /g; \
+		s/\\\:/\\\u/g'`
+
+# print result
+echo -e "${result}"

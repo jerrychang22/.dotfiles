@@ -1,0 +1,27 @@
+#!/bin/bash
+#Pull random image from ArtStation
+
+#Generate a random number to pick from JSON
+RAND=$(echo "$RANDOM % 10" | bc)
+
+CATS=$(echo "$RANDOM % 4" | bc)
+URL='https://www.artstation.com/projects.json?random=true'
+
+case $CATS in
+    0) URL+='&category=matte_painting' ;;
+    1) URL+='&medium=digital2d&category=archviz' ;;
+    2) URL+='&medium=digital2d&category=architecture' ;;
+    3) URL+='&category=environments' ;;
+esac
+
+HID=$(curl $URL | jq -r '[.[]] | .[0] | .['$RAND'] | .hash_id' )
+
+SRC="$(curl 'https://www.artstation.com/projects/'$HID'.json' | jq -r '.assets | [.[]] | .[0] | .image_url' )" 
+
+wget $SRC -O ~/Pictures/wallpapers/artstation.png
+cp ~/Pictures/wallpapers/artstation.png ~/Pictures/wallpapers/current/current.png
+
+echo $URL
+echo $HID
+echo $SRC
+

@@ -1,0 +1,38 @@
+#!/bin/sh
+#Use same wallpaper from Unsplash and recolor with wal
+
+#wget https://source.unsplash.com/random/ -O ~/Pictures/wallpapers/unsplash.png
+#wget https://source.unsplash.com/random/1920x1080 -O ~/Pictures/wallpapers/unsplash.png
+rm ~/.cache/wal/schemes/*
+
+case "$1" in
+    -d|--dark)
+    wal -i ~/Pictures/wallpapers/unsplash.png
+    ;;
+    
+    -l|--light)
+    wal -i ~/Pictures/wallpapers/unsplash.png -l
+    ;;
+
+    *)
+    RAND=$(od -An -N1 -i /dev/random)
+    RAND=$(echo "$RAND % 2" | bc)
+    if [ $RAND -eq 0 ]
+    then
+    #    echo "Bye"
+        wal -i ~/Pictures/wallpapers/unsplash.png -l
+    else
+    #    echo "Hello"
+        wal -i ~/Pictures/wallpapers/unsplash.png
+    fi
+    ;;
+esac
+
+xrdb $HOME/.cache/wal/colors.Xresources
+#Spicetify
+spicetify update
+#Zathura
+genzathurarc
+
+rm $HOME/.cache/thumbnails/neofetch/*
+neofetch --gtk3 off

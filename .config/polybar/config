@@ -1,0 +1,65 @@
+include-file = $HOME/.cache/wal/colors.Xresources
+include-file = $HOME/.config/polybar/modules
+
+[colors]
+background = ${xrdb:color0}
+foreground = ${xrdb:color7}
+primary = ${xrdb:color2}
+secondary = ${xrdb:color5}
+alert = ${xrdb:color0}
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[bar/main]
+width = 100%
+height = 25
+;offset-x = 5%
+;offset-y = 10
+;radius = 6.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-bottom-size = 3
+border-bottom-color = ${colors.primary}
+
+padding-left = 2
+padding-right = 2
+
+module-margin-left = 2
+module-margin-right = 2
+
+font-0 = "SF Mono Powerline:fixed:size=10;1"
+
+modules-left = i3
+modules-center = spotify 
+modules-right = wlan battery date
+;filesystem alsa pulseaudio xkeyboard memory cpu wlan battery temperature powermenu
+
+;tray-position = right
+;tray-padding = 2
+;tray-background = #0063ff
+
+;wm-restack = i3
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+;
+;[settings]
+;screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+; vim:ft=dosini

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+rm $HOME/.cache/thumbnails/neofetch/*
+neofetch --gtk3 off $@

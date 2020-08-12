@@ -1,0 +1,8 @@
+configuration{
+    //Dark theme.
+    theme: "~/.cache/wal/colors-rofi-dark.rasi";
+
+    //Light theme.
+    //theme: "~/.cache/wal/colors-rofi-light.rasi";
+
+}

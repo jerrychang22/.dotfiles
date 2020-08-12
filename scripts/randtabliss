@@ -1,0 +1,5 @@
+#!/bin/sh
+
+wget https://source.unsplash.com/collection/1053828 -O ~/Pictures/wallpapers/tabliss.png
+cp ~/Pictures/wallpapers/tabliss.png ~/Pictures/wallpapers/current/current.png
+
