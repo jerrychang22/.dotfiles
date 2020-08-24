@@ -68,6 +68,33 @@ label-urgent-padding = 2
 ; Separator in between workspaces
 ; label-separator = |
 
+[module/bspwm]
+type=internal/bspwm
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %name%
+label-focused-foreground = ${colors.background}
+label-focused-background = ${colors.secondary}
+label-focused-underline= ${colors.secondary}
+label-focused-padding = 2
+
+; dimmed = Inactive workspace on any monitor
+label-dimmed = %name%
+label-occupied-padding = 1
+
+; urgent = Workspace with urgency hint set
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+
+; empty
+label-empty = 
+
+; Separator in between workspaces
+; label-separator = |
+
 
 [module/mpd]
 type = internal/mpd

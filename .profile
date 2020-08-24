@@ -32,6 +32,6 @@ if [ -d "$HOME/scripts" ] ; then
 fi
 
 # set PATH so it includs yarn global bin
-if [ -d "$(yarn global bin)" ] ; then
-    PATH="$(yarn global bin):$PATH"
-fi
+#if [ -d "$(yarn global bin)" ] ; then
+#    PATH="$(yarn global bin):$PATH"
+#fi

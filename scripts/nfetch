@@ -1,4 +1,4 @@
 #!/bin/sh
 
 rm $HOME/.cache/thumbnails/neofetch/*
-neofetch --gtk3 off $@
+neofetch --gtk3 off --gtk2 off $@

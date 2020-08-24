@@ -61,5 +61,6 @@ function precmd() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source $HOME/.cache/wal/colors.sh
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-source /opt/ros/melodic/setup.zsh
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER='nvim +Man!'
+#source /opt/ros/melodic/setup.zsh

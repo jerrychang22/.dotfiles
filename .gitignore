@@ -5,6 +5,7 @@
 .config/*
 
 !.config/Dharkael/
+!.config/bspwm/
 !.config/i3/
 !.config/kitty/
 !.config/neofetch/
@@ -16,6 +17,7 @@
 !.config/spicetify/
 .config/spicetify/*
 !.config/spicetify/config.ini
+!.config/sxhkd/
 !.config/wal/*
 !.config/zathura/
 

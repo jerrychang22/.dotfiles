@@ -39,11 +39,11 @@ eval " $COMMAND"
 
 # Update colors for programs
 xrdb $HOME/.cache/wal/colors.Xresources
-spicetify update
-genzathurarc
-wal_steam_u -w
-pywalfox update
-i3-msg reload
+#spicetify update
+#genzathurarc
+#wal_steam_u -w
+#pywalfox update
+#i3-msg reload
 
 # Neofetch
 rm $HOME/.cache/thumbnails/neofetch/*
